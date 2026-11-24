@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://8bw3n1klxfny"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_erw1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv0cb"]
+size = Vector2(1744, 40)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e6lj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s6e"]
+size = Vector2(1744, 40)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wijl4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0an3"]
+size = Vector2(432, 48)
+
+[sub_resource type="PrismMesh" id="PrismMesh_cu3ed"]
+
+[sub_resource type="Animation" id="Animation_hrmi8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1176, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-512, -512)]
+}
+
+[sub_resource type="Animation" id="Animation_4xfga"]
+resource_name = "move"
+length = 1.9666667
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Platform:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 0.96666664, 1.8666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1152, 0), Vector2(1152, -352), Vector2(1152, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Platform2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-512, -512), Vector2(512, -512)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_paxxb"]
+_data = {
+&"RESET": SubResource("Animation_hrmi8"),
+&"move": SubResource("Animation_4xfga")
+}
+
+[node name="Map" type="Node2D" unique_id=628433956]
+metadata/_edit_horizontal_guides_ = [-560.0]
+metadata/_edit_vertical_guides_ = [512.0, -512.0]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1552861404]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor" unique_id=547666389]
+modulate = Color(2.0455569e-07, 0, 0.2336241, 1)
+position = Vector2(-1.9073486e-06, 1.9073486e-06)
+scale = Vector2(1744, 47.999996)
+mesh = SubResource("QuadMesh_erw1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=931813690]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_tv0cb")
+
+[node name="Floor2" type="StaticBody2D" parent="." unique_id=2131654825]
+position = Vector2(0, -352)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Floor2" unique_id=640917447]
+modulate = Color(0, 0, 0.23529412, 1)
+position = Vector2(-1.9073486e-06, 1.9073486e-06)
+scale = Vector2(1744, 47.999996)
+mesh = SubResource("QuadMesh_e6lj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=165974871]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_c7s6e")
+
+[node name="Platform" type="StaticBody2D" parent="." unique_id=1641668775]
+position = Vector2(1176, 0)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform" unique_id=591924623]
+modulate = Color(0, 0, 0.30980393, 1)
+scale = Vector2(432, 47.999996)
+mesh = SubResource("QuadMesh_wijl4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1484014543]
+shape = SubResource("RectangleShape2D_e0an3")
+
+[node name="Platform2" type="StaticBody2D" parent="." unique_id=2104432056]
+position = Vector2(-512, -512)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2" unique_id=7763960]
+modulate = Color(0, 0, 0.30980393, 1)
+position = Vector2(-1.9073486e-06, 31.999996)
+scale = Vector2(112.000015, 96.00002)
+mesh = SubResource("PrismMesh_cu3ed")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Platform2" unique_id=676638328]
+position = Vector2(-5.714302, 11.294102)
+scale = Vector2(0.2380953, 0.29411766)
+polygon = PackedVector2Array(-211.19995, -92.79993, 259.19995, -92.79993, 24, 233.59998)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=336486641]
+libraries/ = SubResource("AnimationLibrary_paxxb")
+autoplay = &"move"

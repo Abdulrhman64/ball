@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnpi6mtty25kw"]
+
+[ext_resource type="PackedScene" uid="uid://8bw3n1klxfny" path="res://scenes/map.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bfbywqitqgqfw" path="res://scenes/character.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://d1l4oetw6poeo" path="res://scenes/deathpoint.tscn" id="3_sugp2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_erw1h"]
+
+[node name="Main" type="Node2D" unique_id=1863401582]
+
+[node name="Map" parent="." unique_id=628433956 instance=ExtResource("1_0wfyh")]
+
+[node name="Character" parent="." unique_id=338288901 instance=ExtResource("2_sugp2")]
+position = Vector2(8, -216)
+
+[node name="Camera2D" type="Camera2D" parent="Character" unique_id=350610450]
+
+[node name="deathpoint" parent="." unique_id=1842057229 instance=ExtResource("3_sugp2")]
+position = Vector2(0, 240)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deathpoint" unique_id=1329312327]
+shape = SubResource("WorldBoundaryShape2D_erw1h")
