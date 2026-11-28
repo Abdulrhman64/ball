@@ -145,7 +145,7 @@ mesh = SubResource("QuadMesh_e6lj2")
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_c7s6e")
 
-[node name="Platform" type="StaticBody2D" parent="." unique_id=1641668775]
+[node name="Platform" type="AnimatableBody2D" parent="." unique_id=234110646]
 position = Vector2(1176, 0)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform" unique_id=591924623]
@@ -156,7 +156,7 @@ mesh = SubResource("QuadMesh_wijl4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=1484014543]
 shape = SubResource("RectangleShape2D_e0an3")
 
-[node name="Platform2" type="StaticBody2D" parent="." unique_id=2104432056]
+[node name="Platform2" type="AnimatableBody2D" parent="." unique_id=280210414]
 position = Vector2(-512, -456)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2" unique_id=7763960]
@@ -170,7 +170,7 @@ position = Vector2(-5.714302, 11.294102)
 scale = Vector2(0.2380953, 0.29411766)
 polygon = PackedVector2Array(-211.19995, -92.79993, 259.19995, -92.79993, 24, 233.59998)
 
-[node name="Platform3" type="StaticBody2D" parent="." unique_id=1066664624]
+[node name="Platform3" type="AnimatableBody2D" parent="." unique_id=234325193]
 position = Vector2(-1664, -88)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform3" unique_id=1777346067]
