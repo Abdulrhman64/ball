@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://8bw3n1klxfny"]
 
+[ext_resource type="PackedScene" uid="uid://d1l4oetw6poeo" path="res://scenes/deathpoint.tscn" id="1_4xfga"]
+
 [sub_resource type="QuadMesh" id="QuadMesh_erw1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv0cb"]
-size = Vector2(1744, 40)
+size = Vector2(2816, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_e6lj2"]
 
@@ -16,6 +18,17 @@ size = Vector2(1744, 40)
 size = Vector2(432, 48)
 
 [sub_resource type="PrismMesh" id="PrismMesh_cu3ed"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_4xfga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erw1h"]
+size = Vector2(128, 16)
+
+[sub_resource type="PrismMesh" id="PrismMesh_erw1h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tv0cb"]
+radius = 16.0
+height = 160.0
 
 [sub_resource type="Animation" id="Animation_hrmi8"]
 length = 0.001
@@ -41,7 +54,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-512, -512)]
+"values": [Vector2(-512, -456)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Platform3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1664, -88)]
 }
 
 [sub_resource type="Animation" id="Animation_4xfga"]
@@ -67,10 +92,22 @@ tracks/1/path = NodePath("Platform2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.9),
+"times": PackedFloat32Array(0, 1.8666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-512, -512), Vector2(512, -512)]
+"values": [Vector2(-512, -456), Vector2(512, -456)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Platform3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.8666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1664, -88), Vector2(-1408, -88), Vector2(-1664, -88)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_paxxb"]
@@ -80,19 +117,19 @@ _data = {
 }
 
 [node name="Map" type="Node2D" unique_id=628433956]
-metadata/_edit_horizontal_guides_ = [-560.0]
+metadata/_edit_horizontal_guides_ = [-472.0]
 metadata/_edit_vertical_guides_ = [512.0, -512.0]
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1552861404]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Floor" unique_id=547666389]
 modulate = Color(2.0455569e-07, 0, 0.2336241, 1)
-position = Vector2(-1.9073486e-06, 1.9073486e-06)
-scale = Vector2(1744, 47.999996)
+position = Vector2(-535.9999, 1.9073486e-06)
+scale = Vector2(2815.9998, 47.999996)
 mesh = SubResource("QuadMesh_erw1h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=931813690]
-position = Vector2(0, 4)
+position = Vector2(-536, 4)
 shape = SubResource("RectangleShape2D_tv0cb")
 
 [node name="Floor2" type="StaticBody2D" parent="." unique_id=2131654825]
@@ -120,7 +157,7 @@ mesh = SubResource("QuadMesh_wijl4")
 shape = SubResource("RectangleShape2D_e0an3")
 
 [node name="Platform2" type="StaticBody2D" parent="." unique_id=2104432056]
-position = Vector2(-512, -512)
+position = Vector2(-512, -456)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Platform2" unique_id=7763960]
 modulate = Color(0, 0, 0.30980393, 1)
@@ -132,6 +169,62 @@ mesh = SubResource("PrismMesh_cu3ed")
 position = Vector2(-5.714302, 11.294102)
 scale = Vector2(0.2380953, 0.29411766)
 polygon = PackedVector2Array(-211.19995, -92.79993, 259.19995, -92.79993, 24, 233.59998)
+
+[node name="Platform3" type="StaticBody2D" parent="." unique_id=1066664624]
+position = Vector2(-1664, -88)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Platform3" unique_id=1777346067]
+modulate = Color(0, 0, 0.30980393, 1)
+position = Vector2(-3.0517578e-05, 1.9073486e-06)
+scale = Vector2(127.99992, 16.000002)
+mesh = SubResource("QuadMesh_4xfga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=782077447]
+shape = SubResource("RectangleShape2D_erw1h")
+
+[node name="Spike" parent="." unique_id=1842057229 instance=ExtResource("1_4xfga")]
+modulate = Color(0.6627451, 0, 0, 1)
+position = Vector2(-1440, -40)
+
+[node name="smesha" type="MeshInstance2D" parent="Spike" unique_id=305284475]
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="smeshb" type="MeshInstance2D" parent="Spike" unique_id=2088271052]
+position = Vector2(64, 0)
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="smeshc" type="MeshInstance2D" parent="Spike" unique_id=819477226]
+position = Vector2(-64, 0)
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike" unique_id=1808375701]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tv0cb")
+
+[node name="Spike2" parent="." unique_id=565628297 instance=ExtResource("1_4xfga")]
+modulate = Color(0.6627451, 0, 0, 1)
+position = Vector2(-1632, -40)
+
+[node name="smesha" type="MeshInstance2D" parent="Spike2" unique_id=1542986879]
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="smeshb" type="MeshInstance2D" parent="Spike2" unique_id=1677147051]
+position = Vector2(64, 0)
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="smeshc" type="MeshInstance2D" parent="Spike2" unique_id=1037216434]
+position = Vector2(-64, 0)
+scale = Vector2(64.5, -44.25)
+mesh = SubResource("PrismMesh_erw1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike2" unique_id=1425524927]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tv0cb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=336486641]
 libraries/ = SubResource("AnimationLibrary_paxxb")

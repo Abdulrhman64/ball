@@ -379,7 +379,7 @@ _data = {
 &"walk": SubResource("Animation_my7n2")
 }
 
-[node name="Character" type="CharacterBody2D" unique_id=338288901]
+[node name="Character" type="CharacterBody2D" unique_id=338288901 groups=["player"]]
 script = ExtResource("1_rkhd4")
 friction = 1800
 

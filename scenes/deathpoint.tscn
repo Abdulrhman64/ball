@@ -1,11 +1,16 @@
 [gd_scene format=3 uid="uid://d1l4oetw6poeo"]
 
-[ext_resource type="Script" uid="uid://mehhqql0y1da" path="res://deathpoint.gd" id="1_tqsbe"]
+[ext_resource type="Script" uid="uid://mehhqql0y1da" path="res://scripts/deathpoint.gd" id="1_tqsbe"]
 
 [node name="deathpoint" type="Area2D" unique_id=1842057229]
 script = ExtResource("1_tqsbe")
 
 [node name="Timer" type="Timer" parent="." unique_id=885623302]
 
+[node name="Timer2" type="Timer" parent="." unique_id=159531277]
+wait_time = 0.001
+one_shot = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
