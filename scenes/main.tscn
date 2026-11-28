@@ -16,7 +16,7 @@ position = Vector2(8, -216)
 [node name="Camera2D" type="Camera2D" parent="Character" unique_id=350610450]
 
 [node name="deathpoint" parent="." unique_id=1842057229 instance=ExtResource("3_sugp2")]
-position = Vector2(0, 240)
+position = Vector2(0, 256)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="deathpoint" unique_id=1329312327]
 shape = SubResource("WorldBoundaryShape2D_erw1h")

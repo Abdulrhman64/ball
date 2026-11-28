@@ -7,6 +7,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tv0cb"]
 size = Vector2(24.000008, 26)
 
+[sub_resource type="QuadMesh" id="QuadMesh_tv0cb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtrbs"]
+size = Vector2(81.00001, 8)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erw1h"]
 size = Vector2(60, 208)
 
@@ -144,6 +149,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Skeleton2D2/chest/arm2/rod/CollisionShape2D:disabled")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0lw5n"]
 resource_name = "click"
@@ -247,6 +264,94 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(16, 24), Vector2(32, -31.999998)]
+}
+
+[sub_resource type="Animation" id="Animation_2cgup"]
+resource_name = "hit"
+length = 0.8666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D2/chest/head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, -48), Vector2(8, -40), Vector2(8, -48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D2/chest/arm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.15804645]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D2/chest/arm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 24), Vector2(-24, 23.999996)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D2/chest/arm2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.268928, 0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D2/chest/arm2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.36666667, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 24), Vector2(40.000004, -48), Vector2(24, 24), Vector2(16, 24)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D2/chest/Sprite2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.6226035e-06, 8.000002), Vector2(2.2737368e-13, 16)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D2/chest/arm2/rod/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.033333335, 0.16666667, 0.6666667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_lrhn5"]
@@ -443,6 +548,7 @@ _data = {
 &"RESET": SubResource("Animation_rkhd4"),
 &"click": SubResource("Animation_0lw5n"),
 &"fall": SubResource("Animation_dp8ca"),
+&"hit": SubResource("Animation_2cgup"),
 &"idle": SubResource("Animation_lrhn5"),
 &"walk": SubResource("Animation_my7n2")
 }
@@ -478,6 +584,7 @@ texture = ExtResource("1_glpr6")
 
 [node name="arm" type="Bone2D" parent="Skeleton2D2/chest" unique_id=1583322981]
 position = Vector2(-16, 24)
+scale = Vector2(0.99999964, 0.99999964)
 rest = Transform2D(1, 0, 0, 1, -40, 24)
 
 [node name="Sprite2D" type="Sprite2D" parent="Skeleton2D2/chest/arm" unique_id=1062689537]
@@ -509,6 +616,20 @@ skew = 0.5702261
 shape = SubResource("RectangleShape2D_tv0cb")
 disabled = true
 
+[node name="rod" type="Area2D" parent="Skeleton2D2/chest/arm2" unique_id=2077308159 groups=["int"]]
+position = Vector2(8.000001, 32.000004)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Skeleton2D2/chest/arm2/rod" unique_id=1544865621]
+modulate = Color(0.5931336, 0.59313357, 0.59313357, 1)
+position = Vector2(32.000008, 1.9073486e-06)
+rotation = 1.5707964
+scale = Vector2(7.3675933, 81.7172)
+mesh = SubResource("QuadMesh_tv0cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D2/chest/arm2/rod" unique_id=320145407]
+position = Vector2(32.000004, 0)
+shape = SubResource("RectangleShape2D_rtrbs")
+
 [node name="head" type="Bone2D" parent="Skeleton2D2/chest" unique_id=892536031]
 position = Vector2(8, -48)
 rest = Transform2D(1, 0, 0, 1, 0, -56)
@@ -529,7 +650,6 @@ scale = Vector2(0.2499999, 0.625)
 texture = ExtResource("1_glpr6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=950973656]
-visible = false
 z_index = 2
 position = Vector2(0, 32)
 shape = SubResource("RectangleShape2D_erw1h")
