@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://debh56x1lqowk"]
+
+[ext_resource type="Script" uid="uid://bume4fswo2025" path="res://scripts/button.gd" id="1_hpvv5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_uvdjg"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_83dcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_la1wf"]
+size = Vector2(32, 120)
+
+[sub_resource type="QuadMesh" id="QuadMesh_erw1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erw1h"]
+size = Vector2(48, 385)
+
+[sub_resource type="Animation" id="Animation_hpvv5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.1054274e-15, -192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -192)]
+}
+
+[sub_resource type="Animation" id="Animation_uvdjg"]
+resource_name = "open"
+length = 4.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.1054274e-15, -192), Vector2(0, -512), Vector2(-7.1054274e-15, -192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0333333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -192), Vector2(0, -504), Vector2(0, -192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_83dcw"]
+_data = {
+&"RESET": SubResource("Animation_hpvv5"),
+&"open": SubResource("Animation_uvdjg")
+}
+
+[node name="Door" type="AnimatableBody2D" unique_id=675313817]
+
+[node name="Button" type="Area2D" parent="." unique_id=457280144]
+position = Vector2(128, -104)
+script = ExtResource("1_hpvv5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Button" unique_id=190643066]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1.5258789e-05, -4.7683716e-07)
+scale = Vector2(31.99997, 32)
+mesh = SubResource("QuadMesh_uvdjg")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Button" unique_id=450568180]
+modulate = Color(0.50928617, 0.50928617, 0.50928617, 1)
+position = Vector2(7.6293945e-06, 59.99999)
+scale = Vector2(16.000015, 88.00001)
+mesh = SubResource("QuadMesh_83dcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button" unique_id=1542936866]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_la1wf")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1243582066]
+modulate = Color(1.2995303e-06, 0, 0.49183983, 1)
+position = Vector2(-7.1054274e-15, -192)
+scale = Vector2(48, 384.1249)
+mesh = SubResource("QuadMesh_erw1h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1783987568]
+position = Vector2(0, -192)
+shape = SubResource("RectangleShape2D_erw1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1631446036]
+libraries/ = SubResource("AnimationLibrary_83dcw")
+
+[connection signal="area_entered" from="Button" to="Button" method="_on_area_entered"]
