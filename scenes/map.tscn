@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://8bw3n1klxfny"]
 
 [ext_resource type="PackedScene" uid="uid://d1l4oetw6poeo" path="res://scenes/deathpoint.tscn" id="1_4xfga"]
+[ext_resource type="Script" uid="uid://bume4fswo2025" path="res://scripts/button.gd" id="2_paxxb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_erw1h"]
 
@@ -10,7 +11,7 @@ size = Vector2(2816, 40)
 [sub_resource type="QuadMesh" id="QuadMesh_e6lj2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c7s6e"]
-size = Vector2(1744, 40)
+size = Vector2(2816, 40)
 
 [sub_resource type="QuadMesh" id="QuadMesh_wijl4"]
 
@@ -23,6 +24,11 @@ size = Vector2(432, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erw1h"]
 size = Vector2(128, 16)
+
+[sub_resource type="QuadMesh" id="QuadMesh_tv0cb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtrbs"]
+size = Vector2(64, 384)
 
 [sub_resource type="PrismMesh" id="PrismMesh_erw1h"]
 
@@ -68,6 +74,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-1664, -88)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Door:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-928, -560)]
+}
 
 [sub_resource type="Animation" id="Animation_4xfga"]
 resource_name = "move"
@@ -110,11 +128,49 @@ tracks/2/keys = {
 "values": [Vector2(-1664, -88), Vector2(-1408, -88), Vector2(-1664, -88)]
 }
 
+[sub_resource type="Animation" id="Animation_paxxb"]
+resource_name = "open"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-928, -560), Vector2(-928, -832)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"move"],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_paxxb"]
 _data = {
 &"RESET": SubResource("Animation_hrmi8"),
-&"move": SubResource("Animation_4xfga")
+&"move": SubResource("Animation_4xfga"),
+&"open": SubResource("Animation_paxxb")
 }
+
+[sub_resource type="QuadMesh" id="QuadMesh_rtrbs"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_mrx3e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrx3e"]
+size = Vector2(32, 120)
 
 [node name="Map" type="Node2D" unique_id=628433956]
 metadata/_edit_horizontal_guides_ = [-472.0]
@@ -137,12 +193,12 @@ position = Vector2(0, -352)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Floor2" unique_id=640917447]
 modulate = Color(0, 0, 0.23529412, 1)
-position = Vector2(-1.9073486e-06, 1.9073486e-06)
-scale = Vector2(1744, 47.999996)
+position = Vector2(-536.00006, 1.9073486e-06)
+scale = Vector2(2816.0002, 47.999996)
 mesh = SubResource("QuadMesh_e6lj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2" unique_id=165974871]
-position = Vector2(0, 4)
+position = Vector2(-536, 4)
 shape = SubResource("RectangleShape2D_c7s6e")
 
 [node name="Platform" type="AnimatableBody2D" parent="." unique_id=234110646]
@@ -181,6 +237,18 @@ mesh = SubResource("QuadMesh_4xfga")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=782077447]
 shape = SubResource("RectangleShape2D_erw1h")
+
+[node name="Door" type="AnimatableBody2D" parent="." unique_id=2119555880]
+position = Vector2(-928, -560)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Door" unique_id=145453851]
+modulate = Color(0.26666668, 0.28235295, 0.45882353, 1)
+position = Vector2(-3.0517578e-05, 0)
+scale = Vector2(-66.45453, -379.18182)
+mesh = SubResource("QuadMesh_tv0cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" unique_id=575979351]
+shape = SubResource("RectangleShape2D_rtrbs")
 
 [node name="Spike" parent="." unique_id=1842057229 instance=ExtResource("1_4xfga")]
 modulate = Color(0.6627451, 0, 0, 1)
@@ -229,3 +297,25 @@ shape = SubResource("CapsuleShape2D_tv0cb")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=336486641]
 libraries/ = SubResource("AnimationLibrary_paxxb")
 autoplay = &"move"
+
+[node name="Button" type="Area2D" parent="." unique_id=783983799]
+position = Vector2(-768, -472)
+script = ExtResource("2_paxxb")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Button" unique_id=1892613362]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(1.5258789e-05, -4.7683716e-07)
+scale = Vector2(31.99997, 32)
+mesh = SubResource("QuadMesh_rtrbs")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Button" unique_id=29316571]
+modulate = Color(0.50928617, 0.50928617, 0.50928617, 1)
+position = Vector2(7.6293945e-06, 59.99999)
+scale = Vector2(16.000015, 88.00001)
+mesh = SubResource("QuadMesh_mrx3e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button" unique_id=868511652]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_mrx3e")
+
+[connection signal="area_entered" from="Button" to="Button" method="_on_area_entered"]

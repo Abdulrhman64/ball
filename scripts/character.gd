@@ -2,16 +2,20 @@ extends CharacterBody2D
 
 @onready var anim = $AnimationPlayer
 @onready var skeleton = $Skeleton2D2
-
+@onready var ct = $clickt
 @export var speed = 600
 @export var acc = 1800
 @export var friction = 2200
 
 var moving = false
-
+var clicking = false
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += 1800 * delta
+	if Input.is_action_just_pressed("e"):
+		clicking = true
+		anim.play("click")
+		ct.start()
 	if Input.is_action_pressed("a"):
 		skeleton.scale.x = -1
 		velocity.x = move_toward(velocity.x, -speed, acc * delta)
@@ -29,4 +33,7 @@ func _physics_process(delta):
 	elif abs(velocity.x) > 10:
 		anim.play("walk")
 	else:
-		anim.play("idle")
+		if not clicking:
+			anim.play("idle")
+func _on_clickt_timeout() -> void:
+	clicking = false

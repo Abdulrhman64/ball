@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://cqtkropj3p0f1" path="res://scripts/character.gd" id="1_rkhd4"]
 [ext_resource type="Texture2D" uid="uid://b5ng5h8jp3a13" path="res://assets/shades.png" id="3_lrhn5"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tv0cb"]
+size = Vector2(24.000008, 26)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_erw1h"]
 size = Vector2(60, 208)
 
@@ -128,6 +131,70 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(8, 88)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Skeleton2D2/chest/arm2/Sprite2D2/int/CollisionShape2D:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0lw5n"]
+resource_name = "click"
+length = 1.2333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D2/chest/arm2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.3962634, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D2/chest/arm2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.53333336, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 24), Vector2(64, -15.999996), Vector2(16, 24)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D2/chest/head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.033333335, 0.46666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, -48), Vector2(8, -40), Vector2(8, -48)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D2/chest/arm2/Sprite2D2/int/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335, 0.36666667, 0.76666665, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_dp8ca"]
@@ -374,6 +441,7 @@ tracks/8/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_my7n2"]
 _data = {
 &"RESET": SubResource("Animation_rkhd4"),
+&"click": SubResource("Animation_0lw5n"),
 &"fall": SubResource("Animation_dp8ca"),
 &"idle": SubResource("Animation_lrhn5"),
 &"walk": SubResource("Animation_my7n2")
@@ -430,6 +498,17 @@ rotation = -0.17453292
 scale = Vector2(0.20312503, 0.8125)
 texture = ExtResource("1_glpr6")
 
+[node name="int" type="Area2D" parent="Skeleton2D2/chest/arm2/Sprite2D2" unique_id=1873415971 groups=["int"]]
+position = Vector2(11.429932, 40.496044)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton2D2/chest/arm2/Sprite2D2/int" unique_id=1465906713]
+position = Vector2(-1.9073486e-06, -1.1920929e-06)
+rotation = 0.04405322
+scale = Vector2(4.8529916, 1.4832197)
+skew = 0.5702261
+shape = SubResource("RectangleShape2D_tv0cb")
+disabled = true
+
 [node name="head" type="Bone2D" parent="Skeleton2D2/chest" unique_id=892536031]
 position = Vector2(8, -48)
 rest = Transform2D(1, 0, 0, 1, 0, -56)
@@ -457,3 +536,8 @@ shape = SubResource("RectangleShape2D_erw1h")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=433579075]
 libraries/ = SubResource("AnimationLibrary_my7n2")
+
+[node name="clickt" type="Timer" parent="." unique_id=1299832301]
+wait_time = 1.141
+
+[connection signal="timeout" from="clickt" to="." method="_on_clickt_timeout"]
